@@ -8,20 +8,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--New Contact View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ContactList_Exp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NewContactViewController" customModule="ContactList_Exp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-user-male-50" translatesAutoresizingMaskIntoConstraints="NO" id="6T8-5Y-7a4">
                                 <rect key="frame" x="132" y="152" width="150" height="150"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="4IH-Nc-ElI"/>
                                     <constraint firstAttribute="height" constant="150" id="ghr-ON-JIF"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="486-sl-ofi" appends="YES" id="yCw-4i-MCs"/>
+                                    <outletCollection property="gestureRecognizers" destination="486-sl-ofi" appends="YES" id="Dls-fE-gd5"/>
+                                </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="X1B-tR-ll5">
                                 <rect key="frame" x="31" y="363" width="352" height="224"/>
@@ -56,11 +61,31 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ed3-zf-om2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AhM-K2-ieM"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HMI-Zr-uin"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AhM-K2-ieM">
+                            <connections>
+                                <action selector="cancellButton:" destination="BYZ-38-t0r" id="qTb-be-YZq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="HMI-Zr-uin">
+                            <connections>
+                                <action selector="saveButton:" destination="BYZ-38-t0r" id="hfq-4c-GmX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addImageFromPhotoLibrary" destination="6T8-5Y-7a4" id="hsL-hh-2Ke"/>
+                        <outlet property="firstNameTextField" destination="1pO-1I-hQS" id="haq-Ah-tJ8"/>
+                        <outlet property="lastNameTextField" destination="tGM-di-hKX" id="3Af-KK-XJa"/>
+                        <outlet property="phoneNumberTextField" destination="noH-hS-X09" id="LW1-wk-vbN"/>
+                        <outlet property="profileImageView" destination="6T8-5Y-7a4" id="Xyi-n9-BgJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="486-sl-ofi">
+                    <connections>
+                        <action selector="addImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="kVu-s1-Q1g"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="80.357142857142847"/>
         </scene>

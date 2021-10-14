@@ -17,8 +17,8 @@
 		6DB981F42718D46900B92439 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB981F32718D46900B92439 /* Contact.swift */; };
 		6DB981F62718D52A00B92439 /* SQLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB981F52718D52A00B92439 /* SQLDatabase.swift */; };
 		6DB981F82718D7FA00B92439 /* SQLCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB981F72718D7FA00B92439 /* SQLCommands.swift */; };
-		6DB981FB2718E40600B92439 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB981FA2718E40600B92439 /* ViewController.swift */; };
-		6DB981FD2718E41D00B92439 /* NewContactsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB981FC2718E41D00B92439 /* NewContactsVM.swift */; };
+		6DB981FB2718E40600B92439 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB981FA2718E40600B92439 /* NewContactViewController.swift */; };
+		6DB981FD2718E41D00B92439 /* NewContactVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB981FC2718E41D00B92439 /* NewContactVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +33,8 @@
 		6DB981F32718D46900B92439 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		6DB981F52718D52A00B92439 /* SQLDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLDatabase.swift; sourceTree = "<group>"; };
 		6DB981F72718D7FA00B92439 /* SQLCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLCommands.swift; sourceTree = "<group>"; };
-		6DB981FA2718E40600B92439 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6DB981FC2718E41D00B92439 /* NewContactsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactsVM.swift; sourceTree = "<group>"; };
+		6DB981FA2718E40600B92439 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
+		6DB981FC2718E41D00B92439 /* NewContactVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +126,8 @@
 		6DB981F92718E3C900B92439 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6DB981FC2718E41D00B92439 /* NewContactsVM.swift */,
-				6DB981FA2718E40600B92439 /* ViewController.swift */,
+				6DB981FC2718E41D00B92439 /* NewContactVM.swift */,
+				6DB981FA2718E40600B92439 /* NewContactViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -211,10 +211,10 @@
 			files = (
 				6D1680542718C81300A3F075 /* AppDelegate.swift in Sources */,
 				6DB981F42718D46900B92439 /* Contact.swift in Sources */,
-				6DB981FD2718E41D00B92439 /* NewContactsVM.swift in Sources */,
+				6DB981FD2718E41D00B92439 /* NewContactVM.swift in Sources */,
 				6DB981F82718D7FA00B92439 /* SQLCommands.swift in Sources */,
 				6DB981F22718D33200B92439 /* UIViewController.swift in Sources */,
-				6DB981FB2718E40600B92439 /* ViewController.swift in Sources */,
+				6DB981FB2718E40600B92439 /* NewContactViewController.swift in Sources */,
 				6D1680562718C81300A3F075 /* SceneDelegate.swift in Sources */,
 				6DB981F62718D52A00B92439 /* SQLDatabase.swift in Sources */,
 			);
