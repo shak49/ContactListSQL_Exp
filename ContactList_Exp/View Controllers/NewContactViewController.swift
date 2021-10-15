@@ -21,24 +21,43 @@ class NewContactViewController: UIViewController {
         createTable()
         firstNameTextField.becomeFirstResponder()
         phoneNumberTextField.delegate = self
+        setupViews()
     }
     
     // Shak notes: Actions
     @IBAction func saveButton(_ sender: Any) {
-        let id: Int = 0
+        let id: Int = viewModel == nil ? 0 : viewModel.id!
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
         let phoneNumber = phoneNumberTextField.text ?? ""
         let contactObject = Contact(id: id, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber)
-        addContactToTable(contact: contactObject)
-        SQLCommands.read()
+        if viewModel == nil {
+            addContactToTable(contact: contactObject)
+        } else {
+            updateContact(contactObject)
+        }
     }
     
     @IBAction func cancellButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        let addButton = presentingViewController is UINavigationController
+        if addButton == true {
+            dismiss(animated: true, completion: nil)
+        } else if let cellClicked = navigationController {
+            cellClicked.popViewController(animated: true)
+        } else {
+            print("The ContactListTableViewController is not inside the navigation controller")
+        }
     }
     
     // Shak notes: Functions
+    private func setupViews() {
+        if let viewModel = viewModel {
+            firstNameTextField.text = viewModel.firstName
+            lastNameTextField.text = viewModel.lastName
+            phoneNumberTextField.text = viewModel.phoneNumber
+        }
+    }
+    
     private func createTable() {
         let create = SQLDatabase.sharedInstance.createTable()
     }
@@ -49,6 +68,17 @@ class NewContactViewController: UIViewController {
             dismiss(animated: true, completion: nil)
         } else {
             showError("Error", "This contact cannot be created because its phone number already exist in the contact list")
+        }
+    }
+    
+    private func updateContact(_ contact: Contact) {
+        let updateTableView = SQLCommands.update(contact: contact)
+        if updateTableView == true {
+            if let cellClicked = navigationController {
+                cellClicked.popViewController(animated: true)
+            }
+        } else {
+            showError("Error", "This contact cannot be updated, because this phone number already exist in the contact list.")
         }
     }
 

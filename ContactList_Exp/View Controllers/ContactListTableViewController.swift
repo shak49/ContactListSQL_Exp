@@ -15,13 +15,19 @@ class ContactListTableViewController: UITableViewController {
         super.viewDidLoad()
         title = "Contacts"
         viewModel.connectToDatabase()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadData()
-        tableView.reloadData()
     }
     
     // Shak notes: Functions
     func loadData() {
-        viewModel.loadDataFromDatabase()
+        DispatchQueue.main.async {
+            self.viewModel.loadDataFromDatabase()
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
