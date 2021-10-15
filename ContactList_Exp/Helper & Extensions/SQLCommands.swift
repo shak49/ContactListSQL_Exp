@@ -36,6 +36,29 @@ class SQLCommands {
         }
     }
     
+    static func update(contact: Contact) -> Bool? {
+        guard let database = SQLDatabase.sharedInstance.database else {
+            print("Datastore connection error")
+            return nil
+        }
+        let tableItem = table.filter(id == contact.id).limit(1)
+        do {
+            if try database.run(tableItem.update(firstName <- contact.firstName, lastName <- contact.lastName, phoneNumber <- contact.phoneNumber)) > 0 {
+                print("Contact is updated")
+                return true
+            } else {
+                print("Could not update contact: contact is not found")
+                return false
+            }
+        } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
+            print("Update row faild: \(message) in \(String(describing: statement))")
+            return false
+        } catch let error {
+            print("Update faild: \(error)")
+            return false
+        }
+    }
+    
     static func insertRow(contact: Contact) -> Bool? {
         guard let database = SQLDatabase.sharedInstance.database else {
             print("Datastore connection error")

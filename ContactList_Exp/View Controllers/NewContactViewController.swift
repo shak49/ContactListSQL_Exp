@@ -9,7 +9,7 @@ import UIKit
 
 class NewContactViewController: UIViewController {
     // Shak notes: Properties
-    var viewModel: NewContactVM?
+    var viewModel: NewContactVM!
     
     // Shak notes: Outlets
     @IBOutlet weak var firstNameTextField: UITextField!
