@@ -27,9 +27,9 @@ class SQLCommands {
         do {
             try database.run(table.create(ifNotExists: true, block: { table in
                 table.column(id, primaryKey: true)
-                table.column(firstName, primaryKey: true)
-                table.column(lastName, primaryKey: true)
-                table.column(phoneNumber, primaryKey: true)
+                table.column(firstName)
+                table.column(lastName)
+                table.column(phoneNumber)
             }))
         } catch {
             print("Table already exists: \(error)")

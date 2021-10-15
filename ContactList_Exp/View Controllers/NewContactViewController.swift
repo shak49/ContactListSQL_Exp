@@ -31,6 +31,7 @@ class NewContactViewController: UIViewController {
         let phoneNumber = phoneNumberTextField.text ?? ""
         let contactObject = Contact(id: id, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber)
         addContactToTable(contact: contactObject)
+        SQLCommands.read()
     }
     
     @IBAction func cancellButton(_ sender: Any) {
