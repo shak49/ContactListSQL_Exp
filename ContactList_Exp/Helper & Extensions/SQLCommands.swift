@@ -98,6 +98,19 @@ class SQLCommands {
         }
         return contacts
     }
+    
+    static func delete(contactID: Int) {
+        guard let database = SQLDatabase.sharedInstance.database else {
+            print("Datastore connection error")
+            return
+        }
+        do {
+            let tableItem = table.filter(id == contactID).limit(1)
+            try database.run(tableItem.delete())
+        } catch {
+            print("Delete error: \(error)")
+        }
+    }
 }
 
 
