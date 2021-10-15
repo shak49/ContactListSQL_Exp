@@ -17,7 +17,6 @@ class SQLCommands {
     static let firstName = Expression<String>("firstName")
     static let lastName = Expression<String>("lastName")
     static let phoneNumber = Expression<String>("phoneNumber")
-    static let photo = Expression<Data>("photo")
     
     // Shak notes: Functions
     static func createTable() {
@@ -31,7 +30,6 @@ class SQLCommands {
                 table.column(firstName, primaryKey: true)
                 table.column(lastName, primaryKey: true)
                 table.column(phoneNumber, primaryKey: true)
-                table.column(photo)
             }))
         } catch {
             print("Table already exists: \(error)")
@@ -44,7 +42,7 @@ class SQLCommands {
             return nil
         }
         do {
-            try database.run(table.insert(firstName <- contact.firstName, lastName <- contact.lastName, phoneNumber <- contact.phoneNumber, photo <- contact.photo))
+            try database.run(table.insert(firstName <- contact.firstName, lastName <- contact.lastName, phoneNumber <- contact.phoneNumber))
             return true
         } catch let Result.error(message, code, statement) where code == SQLITE_CONSTRAINT {
             print("Insert row faild: \(message) in \(String(describing: statement))")
@@ -68,8 +66,7 @@ class SQLCommands {
                 let firstName = contact[firstName]
                 let lastName = contact[lastName]
                 let phoneNumber = contact[phoneNumber]
-                let photo = contact[photo]
-                let contactObject = Contact(id: id, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, photo: photo)
+                let contactObject = Contact(id: id, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber)
                 contacts.append(contactObject)
                 print("\(contacts)")
             }

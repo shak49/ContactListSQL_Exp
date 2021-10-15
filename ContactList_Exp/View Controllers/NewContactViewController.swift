@@ -12,15 +12,15 @@ class NewContactViewController: UIViewController {
     var viewModel: NewContactVM?
     
     // Shak notes: Outlets
-    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        createTable()
+        firstNameTextField.becomeFirstResponder()
+        phoneNumberTextField.delegate = self
     }
     
     // Shak notes: Actions
@@ -29,9 +29,7 @@ class NewContactViewController: UIViewController {
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
         let phoneNumber = phoneNumberTextField.text ?? ""
-        let photoView = profileImageView.image ?? UIImage(systemName: "icons8-user-male-50")
-        guard let photo = photoView?.pngData() else { return }
-        let contactObject = Contact(id: id, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, photo: photo)
+        let contactObject = Contact(id: id, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber)
         addContactToTable(contact: contactObject)
     }
     
@@ -55,29 +53,8 @@ class NewContactViewController: UIViewController {
 
 }
 
-extension NewContactViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBAction func addImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-                fatalError("Expected a dictionary of images, but was provided the fallowing info: \(info)")
-        }
-        profileImageView.image = selectedImage
-        dismiss(animated: true, completion: nil)
-    }
-}
 
-
-extension NewContactViewController: UITextViewDelegate {
+extension NewContactViewController: UITextFieldDelegate {
     private func format(mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
@@ -93,7 +70,10 @@ extension NewContactViewController: UITextViewDelegate {
         return result
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) {
-        
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+        let newString = (text as NSString).replacingCharacters(in: range, with: string)
+        textField.text = format(mask: "(XXX) XXX-XXXX", phone: newString)
+        return false
     }
 }

@@ -13,5 +13,4 @@ struct Contact {
     let firstName: String
     let lastName: String
     let phoneNumber: String
-    let photo: Data
 }

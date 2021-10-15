@@ -17,7 +17,6 @@ class NewContactVM {
     let firstName: String?
     let lastName: String?
     let phoneNumber: String?
-    let photo: UIImage?
     
     init(contact: Contact?) {
         self.contact = contact
@@ -25,7 +24,6 @@ class NewContactVM {
         self.firstName = contact?.firstName
         self.lastName = contact?.lastName
         self.phoneNumber = contact?.phoneNumber
-        self.photo = UIImage(data: contact!.photo)
     }
 }
 
